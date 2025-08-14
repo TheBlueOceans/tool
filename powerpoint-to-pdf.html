@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online PowerPoint to PDF converter. Convert PPT/PPTX files to PDF with adjustable compression levels. Secure, fast, and easy to use.">
+    <meta name="keywords" content="powerpoint to pdf, ppt to pdf, pptx to pdf, convert powerpoint, pdf converter">
+    <meta name="author" content="PDF Pro Tools">
+    <title>Free PowerPoint to PDF Converter | PPT to PDF Online Tool</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://example.com/powerpoint-to-pdf">
+    <meta property="og:title" content="Free PowerPoint to PDF Converter">
+    <meta property="og:description" content="Convert PowerPoint presentations to PDF documents with adjustable compression levels. Secure, fast, and easy to use.">
+    <meta property="og:image" content="https://example.com/preview.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://example.com/powerpoint-to-pdf">
+    <meta property="twitter:title" content="Free PowerPoint to PDF Converter">
+    <meta property="twitter:description" content="Convert PowerPoint presentations to PDF documents with adjustable compression levels. Secure, fast, and easy to use.">
+    <meta property="twitter:image" content="https://example.com/preview.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --primary-light: #eef2ff;
+            --secondary: #7209b7;
+            --success: #06d6a0;
+            --warning: #ffd166;
+            --danger: #ef476f;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --border-radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f5f7ff, #eef2ff);
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            font-weight: 300;
+            max-width: 600px;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 992px) {
+            .main-content {
+                grid-template-columns: 3fr 1fr;
+            }
+        }
+
+        .converter-card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .converter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            background: var(--primary-light);
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .upload-area:hover, .upload-area.drag-over {
+            border-color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.08);
+        }
+
+        .upload-icon {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            margin-bottom: 1rem;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 4px 10px rgba(67, 97, 238, 0.25);
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        .compression-section {
+            margin: 1.5rem 0;
+            background: #f9fafc;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--light-gray);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-icon {
+            color: var(--primary);
+        }
+
+        .compression-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .option-card {
+            border: 2px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .option-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .option-card.selected {
+            border-color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.05);
+            box-shadow: 0 4px 10px rgba(67, 97, 238, 0.1);
+        }
+
+        .option-icon {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .option-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--dark);
+        }
+
+        .option-desc {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .file-info {
+            background: #f9fafc;
+            border-radius: var(--border-radius);
+            padding: 1.25rem;
+            border: 1px solid var(--light-gray);
+            margin: 1.5rem 0;
+        }
+
+        .file-info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .file-info-item:last-child {
+            border-bottom: none;
+        }
+
+        .file-info-label {
+            font-weight: 500;
+            color: var(--gray);
+        }
+
+        .file-info-value {
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .action-section {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .ad-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+            border: 1px solid var(--light-gray);
+        }
+
+        .ad-label {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--gray);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .ad-content {
+            color: var(--gray);
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        .features {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            border: 1px solid var(--light-gray);
+        }
+
+        .features-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .features-title-icon {
+            color: var(--primary);
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            color: var(--primary);
+            font-size: 1.2rem;
+            min-width: 24px;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 1.5rem 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+        }
+
+        .footer-heading {
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+        }
+
+        .status-message {
+            padding: 1.25rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .status-success {
+            background-color: rgba(6, 214, 160, 0.1);
+            color: #06a178;
+            border: 1px solid rgba(6, 214, 160, 0.3);
+        }
+
+        .status-error {
+            background-color: rgba(239, 71, 111, 0.1);
+            color: #d43a5e;
+            border: 1px solid rgba(239, 71, 111, 0.3);
+        }
+
+        .status-processing {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(67, 97, 238, 0.3);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--light-gray);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .download-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--success);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(6, 214, 160, 0.3);
+        }
+
+        .download-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(6, 214, 160, 0.4);
+        }
+
+        /* Header decorations */
+        .header-deco {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+
+        .header-deco:nth-child(2) {
+            top: 20px;
+            left: -50px;
+            width: 150px;
+            height: 150px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0.5rem;
+            }
+            
+            .action-section {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .compression-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .upload-icon {
+                font-size: 2.5rem;
+            }
+            
+            .upload-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-deco"></div>
+        <div class="header-deco"></div>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">📊</span>
+                <h1>PowerPoint to PDF Converter</h1>
+            </div>
+            <p class="tagline">Convert your PowerPoint presentations to PDF files instantly with adjustable compression levels</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="converter-section">
+                <div class="converter-card">
+                    <div class="card-header">
+                        <span class="card-icon">📊</span>
+                        Convert PowerPoint to PDF
+                    </div>
+                    <div class="card-body">
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-icon">📁</div>
+                            <h3 class="upload-text">Drag & Drop your PowerPoint files here</h3>
+                            <p>Supports PPT and PPTX formats</p>
+                            <button class="btn btn-outline" id="browseBtn">Browse Files</button>
+                            <input type="file" id="fileInput" class="file-input" accept=".ppt,.pptx">
+                        </div>
+
+                        <div class="file-info" id="fileInfo" style="display: none;">
+                            <div class="file-info-item">
+                                <span class="file-info-label">File Name:</span>
+                                <span class="file-info-value" id="fileName">presentation.pptx</span>
+                            </div>
+                            <div class="file-info-item">
+                                <span class="file-info-label">File Size:</span>
+                                <span class="file-info-value" id="fileSize">3.2 MB</span>
+                            </div>
+                            <div class="file-info-item">
+                                <span class="file-info-label">File Type:</span>
+                                <span class="file-info-value" id="fileType">PPTX</span>
+                            </div>
+                        </div>
+
+                        <div class="compression-section">
+                            <h3 class="section-title">
+                                <span class="section-icon">⚙️</span>
+                                Compression Level
+                            </h3>
+                            <div class="compression-options">
+                                <div class="option-card" data-value="low">
+                                    <div class="option-icon">📦</div>
+                                    <div class="option-name">Low Compression</div>
+                                    <div class="option-desc">Smaller file size</div>
+                                </div>
+                                <div class="option-card selected" data-value="medium">
+                                    <div class="option-icon">⚖️</div>
+                                    <div class="option-name">Medium</div>
+                                    <div class="option-desc">Balanced quality & size</div>
+                                </div>
+                                <div class="option-card" data-value="high">
+                                    <div class="option-icon">🖼️</div>
+                                    <div class="option-name">High Quality</div>
+                                    <div class="option-desc">Larger file size</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="action-section">
+                            <button class="btn btn-large btn-block" id="convertBtn">Convert to PDF</button>
+                            <button class="btn btn-large btn-outline btn-block" id="resetBtn">Reset</button>
+                        </div>
+
+                        <div id="statusMessage" class="status-message status-processing" style="display: none;">
+                            <div class="progress-bar">
+                                <div class="progress" id="progressBar"></div>
+                            </div>
+                            <p id="statusText">Processing your presentation...</p>
+                            <a href="#" id="downloadLink" class="download-link" style="display: none;">Download PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="ad-container">
+                    <div class="ad-label">Advertisement</div>
+                    <div class="ad-content">
+                        <!-- Google AdSense Ad Unit -->
+                        <!-- Replace with your AdSense Ad Unit ID -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                             data-ad-slot="XXXXXXXXXX"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                        <p>Advertisement placeholder</p>
+                    </div>
+                </div>
+
+                <div class="features">
+                    <h3 class="features-title">
+                        <span class="features-title-icon">✨</span>
+                        Key Features
+                    </h3>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <span class="feature-icon">⚡</span>
+                            <span>Instant conversion with high accuracy</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">🔒</span>
+                            <span>Files processed securely in your browser</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">🆓</span>
+                            <span>Completely free with no watermarks</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">📱</span>
+                            <span>Works on mobile, tablet and desktop</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">🔧</span>
+                            <span>Customizable compression options</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">📊</span>
+                            <span>Preserves all formatting and images</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="ad-container">
+                    <div class="ad-label">Advertisement</div>
+                    <div class="ad-content">
+                        <!-- Google AdSense Ad Unit -->
+                        <!-- Replace with your AdSense Ad Unit ID -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                             data-ad-slot="XXXXXXXXXX"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                             (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                        <p>Advertisement placeholder</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3 class="footer-heading">PPT to PDF Converter</h3>
+                <p>The fastest and most secure way to convert your PowerPoint presentations to PDF documents. No registration required, completely free!</p>
+            </div>
+            <div>
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><span>🏠</span> Home</a></li>
+                    <li><a href="#"><span>❓</span> How to Use</a></li>
+                    <li><a href="#"><span>🔒</span> Privacy Policy</a></li>
+                    <li><a href="#"><span>📜</span> Terms of Service</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Other Tools</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><span>📄</span> PDF to PowerPoint</a></li>
+                    <li><a href="#"><span>🗜️</span> Compress PDF</a></li>
+                    <li><a href="#"><span>🔄</span> PDF Converter</a></li>
+                    <li><a href="#"><span>✂️</span> PDF Splitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 PowerPoint to PDF Converter. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const uploadArea = document.getElementById('uploadArea');
+        const browseBtn = document.getElementById('browseBtn');
+        const fileInput = document.getElementById('fileInput');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileName = document.getElementById('fileName');
+        const fileSize = document.getElementById('fileSize');
+        const fileType = document.getElementById('fileType');
+        const convertBtn = document.getElementById('convertBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const optionCards = document.querySelectorAll('.option-card');
+        const statusMessage = document.getElementById('statusMessage');
+        const statusText = document.getElementById('statusText');
+        const progressBar = document.getElementById('progressBar');
+        const downloadLink = document.getElementById('downloadLink');
+        
+        // State
+        let selectedFile = null;
+        let compressionLevel = 'medium';
+        
+        // Event Listeners
+        browseBtn.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', handleFileSelect);
+        uploadArea.addEventListener('dragover', handleDragOver);
+        uploadArea.addEventListener('dragleave', handleDragLeave);
+        uploadArea.addEventListener('drop', handleDrop);
+        convertBtn.addEventListener('click', startConversion);
+        resetBtn.addEventListener('click', resetConverter);
+        
+        // Compression level selection
+        optionCards.forEach(card => {
+            card.addEventListener('click', () => {
+                optionCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                compressionLevel = card.dataset.value;
+            });
+        });
+        
+        // File Handling
+        function handleFileSelect(e) {
+            const files = e.target.files;
+            if (files.length > 0) {
+                processFile(files[0]);
+            }
+        }
+        
+        function handleDragOver(e) {
+            e.preventDefault();
+            uploadArea.classList.add('drag-over');
+        }
+        
+        function handleDragLeave() {
+            uploadArea.classList.remove('drag-over');
+        }
+        
+        function handleDrop(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                processFile(files[0]);
+            }
+        }
+        
+        function processFile(file) {
+            // Check file type
+            const validTypes = ['application/vnd.ms-powerpoint', 
+                                'application/vnd.openxmlformats-officedocument.presentationml.presentation'];
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+            
+            if (!validTypes.includes(file.type) {
+                showStatus('Please select PowerPoint files only (PPT or PPTX)', 'error');
+                return;
+            }
+            
+            // Update state
+            selectedFile = file;
+            
+            // Update file info
+            fileName.textContent = file.name;
+            fileSize.textContent = formatFileSize(file.size);
+            fileType.textContent = fileExtension.toUpperCase();
+            fileInfo.style.display = 'block';
+            
+            showStatus('File selected successfully', 'success');
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        function resetConverter() {
+            selectedFile = null;
+            fileInfo.style.display = 'none';
+            fileInput.value = '';
+            hideStatus();
+        }
+        
+        // Conversion Process
+        function startConversion() {
+            if (!selectedFile) {
+                showStatus('Please select a PowerPoint file first', 'error');
+                return;
+            }
+            
+            showStatus('Processing your presentation...', 'processing');
+            downloadLink.style.display = 'none';
+            simulateConversionProcess();
+        }
+        
+        function simulateConversionProcess() {
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 5;
+                progressBar.style.width = `${progress}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        statusText.textContent = 'Conversion completed successfully!';
+                        downloadLink.style.display = 'inline-block';
+                        statusMessage.className = 'status-message status-success';
+                        
+                        // Simulate download file name
+                        const fileName = selectedFile.name.replace(/\.[^/.]+$/, "") + '.pdf';
+                        downloadLink.textContent = `Download ${fileName}`;
+                        downloadLink.setAttribute('download', fileName);
+                    }, 500);
+                }
+            }, 100);
+        }
+        
+        // Status Messages
+        function showStatus(message, type) {
+            statusText.textContent = message;
+            statusMessage.className = `status-message status-${type}`;
+            statusMessage.style.display = 'flex';
+            
+            // Auto-hide success messages after 5 seconds
+            if (type === 'success') {
+                setTimeout(hideStatus, 5000);
+            }
+        }
+        
+        function hideStatus() {
+            statusMessage.style.display = 'none';
+            progressBar.style.width = '0%';
+            downloadLink.style.display = 'none';
+        }
+        
+        // Initialize AdSense
+        (function() {
+            const ads = document.querySelectorAll('.adsbygoogle');
+            if (ads.length > 0) {
+                // In a real implementation, this would be the AdSense script
+                console.log('AdSense initialized');
+            }
+        })();
+    </script>
+</body>
+</html>

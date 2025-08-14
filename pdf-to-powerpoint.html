@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert PDF to PowerPoint presentations easily with our free online tool. Optimize your PDFs with compression options for the perfect PPT conversion.">
+    <meta name="keywords" content="PDF to PowerPoint, convert PDF, PPT converter, free converter, online tool">
+    <title>PDF2PPT Pro | Free PDF to PowerPoint Converter Tool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_CLIENT_ID" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--success);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--success);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+        
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--gray);
+        }
+        
+        /* Converter Tool */
+        .converter {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+        
+        .tool-header {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .tool-header i {
+            font-size: 1.5rem;
+        }
+        
+        .tool-body {
+            padding: 30px;
+        }
+        
+        .upload-area {
+            border: 2px dashed var(--light-gray);
+            border-radius: 10px;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            transition: var(--transition);
+            cursor: pointer;
+            background: var(--light);
+        }
+        
+        .upload-area:hover, .upload-area.dragover {
+            border-color: var(--accent);
+            background: rgba(72, 149, 239, 0.05);
+        }
+        
+        .upload-icon {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .upload-text h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .upload-text p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(67, 97, 238, 0.2);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Settings Section */
+        .settings {
+            margin: 30px 0;
+        }
+        
+        .settings h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .compression-level {
+            margin-bottom: 30px;
+        }
+        
+        .level-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .level-card {
+            flex: 1;
+            min-width: 150px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .level-card:hover, .level-card.active {
+            border-color: var(--accent);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .level-card.active {
+            background: rgba(72, 149, 239, 0.05);
+        }
+        
+        .level-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .level-card h4 {
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .level-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-convert {
+            background: linear-gradient(to right, #4cc9f0, #4895ef);
+            font-size: 1.1rem;
+            padding: 15px 35px;
+            flex: 2;
+        }
+        
+        .btn-download {
+            background: var(--success);
+            flex: 1;
+        }
+        
+        /* Features Section */
+        .features {
+            margin: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--gray);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            font-size: 2.5rem;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .feature-content {
+            padding: 25px;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        /* Ad Sections */
+        .ad-section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 40px 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        .ad-label {
+            display: inline-block;
+            background: var(--light-gray);
+            color: var(--gray);
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .ad-container {
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light);
+            border-radius: 8px;
+        }
+        
+        .ad-placeholder {
+            color: var(--gray);
+        }
+        
+        .ad-placeholder i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--success);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-col a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-col a:hover {
+            color: var(--success);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.4rem;
+            }
+            
+            .level-options {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 40px 0 20px;
+            }
+            
+            .tool-body {
+                padding: 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* Animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-file-powerpoint logo-icon"></i>
+                <h1>PDF2<span>PPT</span> Pro</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-tools"></i> Tools</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Convert PDF to PowerPoint in Seconds</h2>
+            <p>Transform your PDF documents into editable PowerPoint presentations with our powerful online tool. Perfect for reports, presentations, and educational materials.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Ad Section (Top) -->
+        <div class="ad-section">
+            <span class="ad-label">Advertisement</span>
+            <div class="ad-container">
+                <div class="ad-placeholder">
+                    <i class="fas fa-ad"></i>
+                    <p>Google AdSense Advertisement</p>
+                    <small>Ad Unit ID: YOUR_AD_UNIT_ID</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Converter Tool -->
+        <section class="converter">
+            <div class="tool-header">
+                <i class="fas fa-sync-alt"></i>
+                <h2>PDF to PowerPoint Converter</h2>
+            </div>
+            <div class="tool-body">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="upload-text">
+                        <h3>Upload PDF File</h3>
+                        <p>Drag & drop your PDF file here or click to browse</p>
+                        <input type="file" id="fileInput" accept=".pdf" style="display: none;">
+                        <button class="btn btn-outline" id="browseBtn">
+                            <i class="fas fa-folder-open"></i> Browse Files
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="settings">
+                    <h3><i class="fas fa-sliders-h"></i> Conversion Settings</h3>
+                    
+                    <div class="compression-level">
+                        <h4>Compression Level</h4>
+                        <p>Select the compression level for your PowerPoint output</p>
+                        
+                        <div class="level-options">
+                            <div class="level-card active">
+                                <div class="level-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <h4>Light</h4>
+                                <p>Small file size<br>Fast conversion</p>
+                            </div>
+                            
+                            <div class="level-card">
+                                <div class="level-icon">
+                                    <i class="fas fa-balance-scale"></i>
+                                </div>
+                                <h4>Medium</h4>
+                                <p>Balanced quality<br>Recommended</p>
+                            </div>
+                            
+                            <div class="level-card">
+                                <div class="level-icon">
+                                    <i class="fas fa-gem"></i>
+                                </div>
+                                <h4>High Quality</h4>
+                                <p>Best quality<br>Larger file size</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-convert pulse">
+                            <i class="fas fa-cog"></i> Convert to PowerPoint
+                        </button>
+                        <button class="btn btn-download" disabled>
+                            <i class="fas fa-download"></i> Download PPTX
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="section-title">
+                <h2>Why Choose Our Converter?</h2>
+                <p>We provide the best PDF to PowerPoint conversion experience with these powerful features</p>
+            </div>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Secure Processing</h3>
+                        <p>Your files are automatically deleted from our servers after conversion. We never store or share your documents.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Fast Conversion</h3>
+                        <p>Convert PDF to PowerPoint in seconds with our optimized processing engine. No waiting time!</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-thumbs-up"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>High Accuracy</h3>
+                        <p>Preserve original formatting, fonts, images, and layout with our advanced conversion algorithm.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Ad Section (Bottom) -->
+        <div class="ad-section">
+            <span class="ad-label">Advertisement</span>
+            <div class="ad-container">
+                <div class="ad-placeholder">
+                    <i class="fas fa-ad"></i>
+                    <p>Google AdSense Advertisement</p>
+                    <small>Ad Unit ID: YOUR_AD_UNIT_ID</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>PDF2PPT Pro</h3>
+                    <p>The ultimate online solution for converting PDF documents to editable PowerPoint presentations quickly and securely.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> PDF Tools</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Tools</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> PDF to Word</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> PDF to Excel</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> PDF Compressor</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> PDF Merger</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> support@pdf2pptpro.com</li>
+                        <li><i class="fas fa-globe"></i> www.pdf2pptpro.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 PDF2PPT Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const browseBtn = document.getElementById('browseBtn');
+        const levelCards = document.querySelectorAll('.level-card');
+        const convertBtn = document.querySelector('.btn-convert');
+        const downloadBtn = document.querySelector('.btn-download');
+        
+        // Event Listeners
+        browseBtn.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        fileInput.addEventListener('change', handleFileSelect);
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            if (e.dataTransfer.files.length) {
+                handleFiles(e.dataTransfer.files);
+            }
+        });
+        
+        // Level selection
+        levelCards.forEach(card => {
+            card.addEventListener('click', () => {
+                levelCards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+            });
+        });
+        
+        // Convert button
+        convertBtn.addEventListener('click', () => {
+            if (!fileInput.files.length) {
+                alert('Please select a PDF file first!');
+                return;
+            }
+            
+            // Simulate conversion process
+            convertBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Converting...';
+            convertBtn.classList.remove('pulse');
+            
+            setTimeout(() => {
+                convertBtn.innerHTML = '<i class="fas fa-check"></i> Conversion Complete!';
+                convertBtn.style.background = 'linear-gradient(to right, #4ade80, #22c55e)';
+                downloadBtn.disabled = false;
+                
+                // Update upload area
+                const fileName = fileInput.files[0].name;
+                const fileExtension = fileName.split('.').pop();
+                const baseName = fileName.replace('.' + fileExtension, '');
+                
+                uploadArea.innerHTML = `
+                    <div class="upload-icon" style="color:#22c55e">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="upload-text">
+                        <h3>Ready for Download!</h3>
+                        <p>${baseName}.pptx</p>
+                        <button class="btn" style="background:#22c55e; margin-top:20px" onclick="document.querySelector('.btn-download').click()">
+                            <i class="fas fa-download"></i> Download PowerPoint
+                        </button>
+                    </div>
+                `;
+            }, 3000);
+        });
+        
+        // Download button
+        downloadBtn.addEventListener('click', () => {
+            alert('Download functionality would be implemented with backend connection');
+        });
+        
+        // Handle file selection
+        function handleFileSelect(e) {
+            handleFiles(e.target.files);
+        }
+        
+        function handleFiles(files) {
+            const file = files[0];
+            
+            if (file && file.type === 'application/pdf') {
+                // Update upload area
+                uploadArea.innerHTML = `
+                    <div class="upload-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="upload-text">
+                        <h3>${file.name}</h3>
+                        <p>${formatFileSize(file.size)}</p>
+                        <button class="btn btn-outline" id="changeBtn">
+                            <i class="fas fa-exchange-alt"></i> Change File
+                        </button>
+                    </div>
+                `;
+                
+                // Add event listener to the new button
+                document.getElementById('changeBtn').addEventListener('click', () => {
+                    fileInput.click();
+                });
+            } else {
+                alert('Please select a valid PDF file.');
+            }
+        }
+        
+        // Format file size
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+    </script>
+</body>
+</html>
