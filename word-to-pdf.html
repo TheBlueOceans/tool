@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online Word to PDF converter with compression options. Convert DOC/DOCX to PDF instantly without quality loss.">
+    <meta name="keywords" content="word to pdf, doc to pdf, document converter, free pdf converter">
+    <meta name="author" content="PDF Solutions">
+    <title>Word to PDF Converter | Free Online Tool with Compression Options</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.1.0/docx.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_CLIENT_ID" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --success: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --border: #dee2e6;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+        
+        .logo h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .converter-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            transition: var(--transition);
+        }
+        
+        .converter-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-header {
+            margin-bottom: 25px;
+        }
+        
+        .card-header h2 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .card-header p {
+            color: var(--gray);
+        }
+        
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            background: #fafbff;
+        }
+        
+        .upload-area:hover {
+            border-color: var(--accent);
+            background: #f0f5ff;
+        }
+        
+        .upload-area i {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .upload-area h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .upload-area p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .compression-section {
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .compression-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .compression-option {
+            flex: 1;
+            min-width: 140px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .compression-option:hover, .compression-option.active {
+            border-color: var(--primary);
+            background: #f0f5ff;
+        }
+        
+        .compression-option h4 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .compression-option p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .result-section {
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .result-card {
+            background: #f0f5ff;
+            border-left: 4px solid var(--success);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .file-info i {
+            font-size: 2rem;
+            color: var(--success);
+        }
+        
+        .file-details h4 {
+            margin-bottom: 5px;
+        }
+        
+        .file-details p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .ad-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            text-align: center;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .ad-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        
+        .ad-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #f8f9fa;
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .features {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+        }
+        
+        .features h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list i {
+            color: var(--success);
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+        
+        .progress-container {
+            margin: 25px 0;
+            display: none;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: var(--success);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0 20px;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 50px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .compression-options {
+                flex-direction: column;
+            }
+            
+            header {
+                padding: 20px 0;
+            }
+            
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-file-pdf"></i>
+                <h1>Word to PDF Converter</h1>
+            </div>
+            <p class="tagline">Convert your Word documents to PDF with optimized compression levels. Fast, secure, and free!</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="converter-card">
+                <div class="card-header">
+                    <h2>Convert Word to PDF</h2>
+                    <p>Upload your DOC or DOCX file and convert it to PDF format in seconds</p>
+                </div>
+                
+                <div class="upload-area" id="dropArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Drag & Drop your Word file</h3>
+                    <p>or</p>
+                    <button class="btn" id="browseBtn"><i class="fas fa-folder-open"></i> Browse Files</button>
+                    <input type="file" class="file-input" id="fileInput" accept=".doc,.docx">
+                    <p class="small">Supported formats: DOC, DOCX (Max file size: 25MB)</p>
+                </div>
+                
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar">
+                        <div class="progress" id="progressBar"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">Processing your file...</div>
+                </div>
+                
+                <div class="compression-section">
+                    <h3 class="section-title"><i class="fas fa-compress-alt"></i> Compression Level</h3>
+                    <div class="compression-options">
+                        <div class="compression-option active" data-level="low">
+                            <h4>Low Compression</h4>
+                            <p>Best quality (larger file)</p>
+                        </div>
+                        <div class="compression-option" data-level="medium">
+                            <h4>Medium Compression</h4>
+                            <p>Balanced quality & size</p>
+                        </div>
+                        <div class="compression-option" data-level="high">
+                            <h4>High Compression</h4>
+                            <p>Smaller file (good quality)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn" id="convertBtn" disabled><i class="fas fa-sync-alt"></i> Convert to PDF</button>
+                    <button class="btn btn-outline" id="resetBtn"><i class="fas fa-trash-alt"></i> Clear</button>
+                </div>
+                
+                <div class="result-section" id="resultSection">
+                    <h3 class="section-title"><i class="fas fa-check-circle"></i> Conversion Complete!</h3>
+                    <div class="result-card">
+                        <div class="file-info">
+                            <i class="fas fa-file-pdf"></i>
+                            <div class="file-details">
+                                <h4>document-converted.pdf</h4>
+                                <p>PDF Document • 1.2 MB</p>
+                            </div>
+                        </div>
+                        <button class="btn" id="downloadBtn"><i class="fas fa-download"></i> Download PDF</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="ad-container">
+                    <div class="ad-label">Advertisement</div>
+                    <div class="ad-placeholder">
+                        <div>Google AdSense<br>Ad Unit Here</div>
+                    </div>
+                </div>
+                
+                <div class="features">
+                    <h3><i class="fas fa-star"></i> Why Use Our Converter?</h3>
+                    <ul class="feature-list">
+                        <li>
+                            <i class="fas fa-lock"></i>
+                            <div><strong>Secure Processing</strong><br>Files are processed in your browser, never uploaded to servers</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-bolt"></i>
+                            <div><strong>Instant Conversion</strong><br>Convert Word to PDF in seconds with no wait time</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-compress"></i>
+                            <div><strong>Smart Compression</strong><br>Optimize PDF size without losing quality</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-mobile-alt"></i>
+                            <div><strong>Fully Responsive</strong><br>Works perfectly on any device</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-gift"></i>
+                            <div><strong>100% Free</strong><br>No hidden costs or watermarks</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="ad-container">
+                    <div class="ad-label">Advertisement</div>
+                    <div class="ad-placeholder">
+                        <div>Google AdSense<br>Ad Unit Here</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Help Center</a>
+            </div>
+            <p>&copy; 2023 Word to PDF Converter. All rights reserved.</p>
+            <p>This tool is designed for personal and professional use. Documents are never stored on our servers.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const dropArea = document.getElementById('dropArea');
+            const fileInput = document.getElementById('fileInput');
+            const browseBtn = document.getElementById('browseBtn');
+            const convertBtn = document.getElementById('convertBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const resultSection = document.getElementById('resultSection');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const compressionOptions = document.querySelectorAll('.compression-option');
+            
+            let selectedFile = null;
+            let compressionLevel = 'medium';
+            
+            // Set medium compression as default
+            document.querySelector('[data-level="medium"]').classList.add('active');
+            
+            // Event Listeners
+            browseBtn.addEventListener('click', () => fileInput.click());
+            
+            fileInput.addEventListener('change', function(e) {
+                handleFiles(e.target.files);
+            });
+            
+            // Drag and drop functionality
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropArea.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, unhighlight, false);
+            });
+            
+            function highlight() {
+                dropArea.style.borderColor = '#4361ee';
+                dropArea.style.backgroundColor = '#e6eeff';
+            }
+            
+            function unhighlight() {
+                dropArea.style.borderColor = '#dee2e6';
+                dropArea.style.backgroundColor = '#fafbff';
+            }
+            
+            dropArea.addEventListener('drop', handleDrop, false);
+            
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                handleFiles(files);
+            }
+            
+            // Handle selected files
+            function handleFiles(files) {
+                if (files.length === 0) return;
+                
+                const file = files[0];
+                const validTypes = ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                
+                if (!validTypes.includes(file.type) && !file.name.match(/\.(doc|docx)$/)) {
+                    alert('Please select a valid Word document (DOC or DOCX)');
+                    return;
+                }
+                
+                if (file.size > 25 * 1024 * 1024) {
+                    alert('File size exceeds 25MB limit. Please choose a smaller file.');
+                    return;
+                }
+                
+                selectedFile = file;
+                convertBtn.disabled = false;
+                
+                // Update UI
+                dropArea.innerHTML = `
+                    <i class="fas fa-file-word" style="color: #2b579a;"></i>
+                    <h3>${file.name}</h3>
+                    <p>${formatFileSize(file.size)}</p>
+                    <p class="small">Click to select a different file</p>
+                `;
+            }
+            
+            // Compression level selection
+            compressionOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    compressionOptions.forEach(opt => opt.classList.remove('active'));
+                    option.classList.add('active');
+                    compressionLevel = option.dataset.level;
+                });
+            });
+            
+            // Convert button
+            convertBtn.addEventListener('click', convertToPdf);
+            
+            // Reset button
+            resetBtn.addEventListener('click', resetConverter);
+            
+            // Download button
+            downloadBtn.addEventListener('click', downloadPdf);
+            
+            // Format file size
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+            
+            // Simulate conversion process
+            function convertToPdf() {
+                if (!selectedFile) return;
+                
+                // Show progress
+                progressContainer.style.display = 'block';
+                resultSection.style.display = 'none';
+                
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 5;
+                    progressBar.style.width = `${progress}%`;
+                    
+                    if (progress === 25) progressText.textContent = 'Reading document...';
+                    if (progress === 50) progressText.textContent = 'Processing content...';
+                    if (progress === 75) progressText.textContent = 'Optimizing PDF...';
+                    
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        progressText.textContent = 'Conversion complete!';
+                        
+                        // Show result after a short delay
+                        setTimeout(() => {
+                            progressContainer.style.display = 'none';
+                            resultSection.style.display = 'block';
+                        }, 500);
+                    }
+                }, 100);
+            }
+            
+            // Download PDF
+            function downloadPdf() {
+                // In a real app, this would download the converted PDF
+                alert('In a production environment, this would download your converted PDF file.');
+                
+                // For demo purposes, create a sample download
+                const link = document.createElement('a');
+                link.href = 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
+                link.download = 'converted-document.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+            
+            // Reset converter
+            function resetConverter() {
+                selectedFile = null;
+                convertBtn.disabled = true;
+                progressContainer.style.display = 'none';
+                resultSection.style.display = 'none';
+                progressBar.style.width = '0%';
+                
+                // Reset drop area
+                dropArea.innerHTML = `
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Drag & Drop your Word file</h3>
+                    <p>or</p>
+                    <button class="btn" id="browseBtn"><i class="fas fa-folder-open"></i> Browse Files</button>
+                    <input type="file" class="file-input" id="fileInput" accept=".doc,.docx">
+                    <p class="small">Supported formats: DOC, DOCX (Max file size: 25MB)</p>
+                `;
+                
+                // Reattach event listeners
+                document.getElementById('browseBtn').addEventListener('click', () => fileInput.click());
+            }
+        });
+    </script>
+</body>
+</html>
